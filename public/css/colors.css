@@ -1,0 +1,180 @@
+:root {
+  /* Theme colors */
+  --background-light: #f5f5f5;
+  --background-dark: #1e1e1e;
+  
+  --text-primary-light: #333;
+  --text-primary-dark: #fff;
+  --text-secondary-light: #666;
+  --text-secondary-dark: #aaa;
+  --text-link-light: #0066cc;
+  --text-link-dark: #4d94ff;
+  
+  --border-light: #ddd;
+  --border-dark: #555;
+  
+  /* UI element colors */
+  --container-bg-light: white;
+  --container-bg-dark: #1e1e1e;
+  
+  --input-bg-light: #fff;
+  --input-bg-dark: #2d2d2d;
+  
+  --auto-calc-bg-light: #f1f1f1;
+  --auto-calc-bg-dark: #2d2d2d;
+  
+  --result-box-bg-light: #f9f9f9;
+  --result-box-bg-dark: #2d2d2d;
+  --result-box-border-light: #eee;
+  --result-box-border-dark: #444;
+  
+  --tab-bg-light: #f1f1f1;
+  --tab-bg-dark: #2d2d2d;
+  --tab-active-bg-light: white;
+  --tab-active-bg-dark: #1e1e1e;
+  
+  --robot-info-bg-light: #e9f3ff;
+  --robot-info-bg-dark: #1a2a42;
+  
+  --info-box-bg-light: #fff8e1;
+  --info-box-bg-dark: #332b00;
+  
+  --visualization-bg-light: #f5f5f5;
+  --visualization-bg-dark: #2d2d2d;
+
+  /* Status colors - Success */
+  --success-text-light: #33691e;
+  --success-text-dark: #9CEB60;
+  --success-bg-light: #e8f5e9;
+  --success-bg-dark: #1e3a1e;
+  --success-border-light: #4caf50;
+  --success-border-dark: #4a8c34;
+  
+  /* Status colors - Warning */
+  --warning-text-light: #f57f17;
+  --warning-text-dark: #ffb300;
+  --warning-bg-light: #fff8e1;
+  --warning-bg-dark: #33280A;
+  --warning-border-light: #ffc107;
+  --warning-border-dark: #B38600;
+  
+  /* Status colors - Error */
+  --error-text-light: #d32f2f;
+  --error-text-dark: #ff5252;
+  --error-bg-light: #ffebee;
+  --error-bg-dark: #3E1A1A;
+  --error-border-light: #f44336;
+  --error-border-dark: #B71C1C;
+  
+  /* Button colors */
+  --button-bg-light: #0066cc;
+  --button-bg-dark: #4d94ff;
+  --button-text-light: white;
+  --button-text-dark: #1e1e1e;
+  --button-disabled-bg-light: #b0bec5;
+  --button-disabled-border-light: #90a4ae;
+  --button-disabled-bg-dark: #424242;
+  --button-disabled-border-dark: #616161;
+  --button-hover-light: #0055aa;
+  --button-hover-dark: #6ca9ff;
+  
+  /* Theme toggle colors */
+  --theme-toggle-light: #FF9800;
+  --theme-toggle-dark: #6200EA;
+
+  /* Preset button colors */
+  --preset-btn-bg-light: #e9f3ff;
+  --preset-btn-bg-dark: #1a2a42;
+  --preset-btn-color-light: #0066cc;
+  --preset-btn-color-dark: #4d94ff;
+  --preset-btn-border-light: #0066cc;
+  --preset-btn-border-dark: #4d94ff;
+}
+
+/* Add dark mode class that can be applied to body */
+.dark-mode-applied {
+  --background: var(--background-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --text-link: var(--text-link-dark);
+  --border: var(--border-dark);
+  
+  --container-bg: var(--container-bg-dark);
+  --input-bg: var(--input-bg-dark);
+  --auto-calc-bg: var(--auto-calc-bg-dark);
+  --result-box-bg: var(--result-box-bg-dark);
+  --result-box-border: var(--result-box-border-dark);
+  --tab-bg: var(--tab-bg-dark);
+  --tab-active-bg: var(--tab-active-bg-dark);
+  --robot-info-bg: var(--robot-info-bg-dark);
+  --info-box-bg: var(--info-box-bg-dark);
+  --visualization-bg: var(--visualization-bg-dark);
+  --button-bg: var(--button-bg-dark);
+  --button-text: var(--button-text-dark);
+  
+  --success-text: var(--success-text-dark);
+  --success-bg: var(--success-bg-dark);
+  --success-border: var(--success-border-dark);
+  
+  --warning-text: var(--warning-text-dark);
+  --warning-bg: var(--warning-bg-dark);
+  --warning-border: var(--warning-border-dark);
+  
+  --error-text: var(--error-text-dark);
+  --error-bg: var(--error-bg-dark);
+  --error-border: var(--error-border-dark);
+  
+  --button-disabled-bg: var(--button-disabled-bg-dark);
+  --button-disabled-border: var(--button-disabled-border-dark);
+  --button-hover: var(--button-hover-dark);
+  
+  --theme-toggle: var(--theme-toggle-dark);
+  
+  --preset-btn-bg: var(--preset-btn-bg-dark);
+  --preset-btn-color: var(--preset-btn-color-dark);
+  --preset-btn-border: var(--preset-btn-border-dark);
+}
+
+/* Light mode (default) */
+:root:not(.dark-mode-applied) {
+  --background: var(--background-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --text-link: var(--text-link-light);
+  --border: var(--border-light);
+  
+  --container-bg: var(--container-bg-light);
+  --input-bg: var(--input-bg-light);
+  --auto-calc-bg: var(--auto-calc-bg-light);
+  --result-box-bg: var(--result-box-bg-light);
+  --result-box-border: var(--result-box-border-light);
+  --tab-bg: var(--tab-bg-light);
+  --tab-active-bg: var(--tab-active-bg-light);
+  --robot-info-bg: var(--robot-info-bg-light);
+  --info-box-bg: var(--info-box-bg-light);
+  --visualization-bg: var(--visualization-bg-light);
+  --button-bg: var(--button-bg-light);
+  --button-text: var(--button-text-light);
+  
+  --success-text: var(--success-text-light);
+  --success-bg: var(--success-bg-light);
+  --success-border: var(--success-border-light);
+  
+  --warning-text: var(--warning-text-light);
+  --warning-bg: var(--warning-bg-light);
+  --warning-border: var(--warning-border-light);
+  
+  --error-text: var(--error-text-light);
+  --error-bg: var(--error-bg-light);
+  --error-border: var(--error-border-light);
+  
+  --button-disabled-bg: var(--button-disabled-bg-light);
+  --button-disabled-border: var(--button-disabled-border-light);
+  --button-hover: var(--button-hover-light);
+  
+  --theme-toggle: var(--theme-toggle-light);
+  
+  --preset-btn-bg: var(--preset-btn-bg-light);
+  --preset-btn-color: var(--preset-btn-color-light);
+  --preset-btn-border: var(--preset-btn-border-light);
+} 

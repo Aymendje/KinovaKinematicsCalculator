@@ -1,0 +1,159 @@
+/* Dark mode CSS using CSS variables from colors.css */
+
+/* Apply the dark-mode-applied class instead of using the media query */
+body.dark-mode-applied,
+body:has(#dark-mode-styles[rel="stylesheet"]) {
+    /* Dark theme already applied via colors.css */
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+
+/* Theme toggle button styles */
+.theme-toggle.dark-mode-applied {
+    background-color: #3d3d3d;
+    border-color: var(--border);
+}
+.theme-toggle.dark-mode-applied .theme-icon-bg {
+    color: var(--text-secondary);
+}
+
+/* Dark mode styling for language toggle */
+.dark-mode-applied .lang-toggle:hover {
+    background-color: var(--button-hover);
+}
+
+/* Dark mode styles for all elements */
+body.dark-mode-applied h1, 
+body.dark-mode-applied h2, 
+body.dark-mode-applied h3,
+body:has(#dark-mode-styles[rel="stylesheet"]) h1, 
+body:has(#dark-mode-styles[rel="stylesheet"]) h2, 
+body:has(#dark-mode-styles[rel="stylesheet"]) h3 {
+    color: var(--text-link);
+}
+
+body.dark-mode-applied .container,
+body:has(#dark-mode-styles[rel="stylesheet"]) .container {
+    background-color: var(--background-dark);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode-applied label,
+body:has(#dark-mode-styles[rel="stylesheet"]) label {
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied input[type="number"],
+body:has(#dark-mode-styles[rel="stylesheet"]) input[type="number"] {
+    background-color: #2d2d2d;
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+body.dark-mode-applied button,
+body:has(#dark-mode-styles[rel="stylesheet"]) button {
+    background-color: var(--text-link);
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied button:hover,
+body:has(#dark-mode-styles[rel="stylesheet"]) button:hover {
+    background-color: var(--button-hover);
+}
+
+body.dark-mode-applied .result-box,
+body:has(#dark-mode-styles[rel="stylesheet"]) .result-box {
+    background-color: #2d2d2d;
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied .result-label,
+body:has(#dark-mode-styles[rel="stylesheet"]) .result-label {
+    color: var(--text-link);
+}
+
+body.dark-mode-applied .error-rate-container,
+body:has(#dark-mode-styles[rel="stylesheet"]) .error-rate-container {
+    background-color: var(--error-bg);
+    border-left-color: var(--error-border);
+}
+
+body.dark-mode-applied .error-rate,
+body:has(#dark-mode-styles[rel="stylesheet"]) .error-rate {
+    color: var(--error-text);
+}
+
+body.dark-mode-applied .robot-info,
+body:has(#dark-mode-styles[rel="stylesheet"]) .robot-info {
+    background-color: #1a2a42;
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied .preset-btn,
+body:has(#dark-mode-styles[rel="stylesheet"]) .preset-btn {
+    background-color: #1a2a42;
+    color: var(--text-link);
+    border-color: var(--text-link);
+}
+
+body.dark-mode-applied .preset-btn:hover,
+body:has(#dark-mode-styles[rel="stylesheet"]) .preset-btn:hover {
+    background-color: var(--text-link);
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied .tabs,
+body:has(#dark-mode-styles[rel="stylesheet"]) .tabs {
+    border-bottom-color: var(--border);
+}
+
+body.dark-mode-applied .tab,
+body:has(#dark-mode-styles[rel="stylesheet"]) .tab {
+    background-color: #2d2d2d;
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied .tab.active,
+body:has(#dark-mode-styles[rel="stylesheet"]) .tab.active {
+    background-color: var(--background-dark);
+    color: var(--text-link);
+    border-bottom-color: var(--background-dark);
+}
+
+body.dark-mode-applied .info-box,
+body:has(#dark-mode-styles[rel="stylesheet"]) .info-box {
+    background-color: var(--warning-bg);
+    border-left-color: var(--warning-border);
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied .robot-visualization,
+body:has(#dark-mode-styles[rel="stylesheet"]) .robot-visualization {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode-applied .visualization-info,
+body:has(#dark-mode-styles[rel="stylesheet"]) .visualization-info {
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied .auto-calc-label,
+body:has(#dark-mode-styles[rel="stylesheet"]) .auto-calc-label {
+    background-color: #2d2d2d;
+    color: var(--text-primary);
+}
+
+body.dark-mode-applied .auto-calc-active,
+body:has(#dark-mode-styles[rel="stylesheet"]) .auto-calc-active {
+    background-color: var(--success-bg);
+    border-color: var(--success-border);
+    color: var(--success-text);
+}
+
+body.dark-mode-applied .visualization-section,
+body:has(#dark-mode-styles[rel="stylesheet"]) .visualization-section {
+    background-color: var(--background-dark);
+    border-color: var(--border);
+} 

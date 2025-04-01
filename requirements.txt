@@ -1,0 +1,4 @@
+flask<3.1
+ikpy==3.4.2
+numpy==1.26.4
+scipy==1.15.2

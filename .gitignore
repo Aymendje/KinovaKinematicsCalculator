@@ -1,0 +1,65 @@
+# Project Specific Ignores (Customize as needed)
+###########################################
+
+# Node.js Dependencies and Build Artifacts
+node_modules/
+package-lock.json
+yarn.lock
+dist/
+build/
+.cache/
+
+# Python Virtual Environment (Important for Flask)
+venv/
+.venv/
+env/
+
+# Flask Related
+instance/
+*.pyc
+__pycache__/
+
+# VS Code Specific (Cursor is based on VS Code)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Logs and Temporary Files
+*.log
+tmp/
+temp/
+*.tmp
+
+# Environment Variables (Critical!)
+.env
+.env.*
+!example.env
+
+# Database files (If you're using a local database - be careful!)
+*.sqlite
+*.db
+*.sql
+static/*
+
+# Editor backups
+*~
+*.swp
+._*
+
+# OS generated files
+.DS_Store
+
+# Other
+uploads/
+
+# Ignore the cursor project metadata
+.cursor/
+.cursor_ide/
+
+# Ignore the .idea folder
+.idea/
+
+# Ignore the gitignore file
+!.gitignore

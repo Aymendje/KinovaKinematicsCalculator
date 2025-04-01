@@ -1,0 +1,44 @@
+/* Styles for auto-calculation checkbox */
+.auto-calc-label {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 0.8em;
+    background-color: var(--auto-calc-bg, #f1f1f1);
+    padding: 2px 6px;
+    border-radius: 12px;
+}
+
+.auto-calc-checkbox {
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: var(--input-bg, #fff);
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative; /* Needed for absolute positioning of the checkmark */
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.checkbox-label {
+    font-size: 0.9em;
+    user-select: none;
+}
+
+/* Styles for active auto-calculation */
+.auto-calc-active {
+    background-color: var(--success-bg, #e8f5e9); /* Light green */
+    border: 1px solid var(--success-border, #4caf50); /* Green border */
+    color: var(--success-text, #33691e); /* Dark green text */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+#calculate-btn, #calculate-ik-btn {
+    padding-right: 8px;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s, font-weight 0.3s;
+} 
