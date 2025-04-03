@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
-    ports:
-      - "8000:8000"
+    build:
+      context: https://github.com/aymendje/kinova-calculator.git
+      dockerfile: Dockerfile
     restart: unless-stopped 

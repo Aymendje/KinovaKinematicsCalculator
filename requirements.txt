@@ -1,5 +1,6 @@
-gunicorn
+pywebview==4.4.1
 flask<3.1
+gunicorn
 ikpy==3.4.2
 numpy==1.26.4
 scipy==1.15.2

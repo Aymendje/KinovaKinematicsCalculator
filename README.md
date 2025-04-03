@@ -1,6 +1,6 @@
 # Kinova Gen3 Lite Robot Kinematics Calculator
 
-An interactive web application for visualizing and calculating the forward and inverse kinematics of a Kinova Gen3 Lite robot arm.
+An interactive application for visualizing and calculating the forward and inverse kinematics of a Kinova Gen3 Lite robot arm. Available as both a desktop application (PyWebView) and a web application (Flask).
 
 ![Kinova Gen3 Lite Robot](https://img.icons8.com/fluency/96/robot.png)
 
@@ -15,12 +15,13 @@ An interactive web application for visualizing and calculating the forward and i
 *   **Responsive Design:** Modern UI layout that adapts to different screen sizes.
 *   **Dark/Light Theme:** Toggle between dark and light mode for comfortable viewing.
 *   **Multi-language Support:** Interface text can be switched between languages (using translation files in the `lang/` directory).
+*   **Unified Codebase:** Same code runs as both a desktop application and a web application.
 
 ## Getting Started
 
 ### Prerequisites
 
-*   Python 3.x
+*   Python 3.8 or later
 *   pip (Python package installer)
 
 ### Setup
@@ -38,12 +39,54 @@ An interactive web application for visualizing and calculating the forward and i
 
 ### Running the Application
 
-1.  **Start the Flask server:**
-    ```bash
-    python server.py
-    ```
+#### Desktop Application (PyWebView)
 
-2.  **Open your web browser** and navigate to `http://127.0.0.1:5000`
+Run the application as a native desktop application:
+
+```bash
+python app_webview.py
+```
+
+This will open a native window with the application interface.
+
+#### Web Application (Flask)
+
+Alternatively, run as a web application:
+
+```bash
+python app.py
+```
+
+Then open your web browser and navigate to `http://localhost:5000`
+
+## How It Works
+
+The application uses a unified JavaScript codebase that automatically detects whether it's running in a PyWebView environment or a web browser:
+
+- In PyWebView: Uses `window.pywebview.api` to directly call Python methods
+- In web browser: Uses standard HTTP fetch requests to Flask endpoints
+
+This is implemented with a simple detection mechanism:
+
+```javascript
+const callBackend = async (endpoint, data) => {
+    // If in PyWebView, use direct API calls
+    if (window.pywebview !== undefined) {
+        const methodName = endpoint.replace('/api/', '');
+        return await window.pywebview.api[methodName](data);
+    } 
+    // Otherwise, use HTTP fetch
+    else {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        
+        return await response.json();
+    }
+};
+```
 
 ## Project Structure
 
@@ -60,6 +103,7 @@ An interactive web application for visualizing and calculating the forward and i
 │   │   ├── robot-visualization.js # Three.js visualization
 │   │   ├── forwardk.js         # Forward kinematics UI logic
 │   │   ├── inversek.js         # Inverse kinematics UI logic
+│   │   ├── api.js              # Unified API utility (PyWebView/HTTP)
 │   │   ├── ui.js               # UI components
 │   │   ├── helper.js           # Utility functions
 │   │   ├── colors.js           # Color management
@@ -68,7 +112,8 @@ An interactive web application for visualizing and calculating the forward and i
 │   ├── external/               # External libraries (Three.js, etc.)
 │   ├── lang/                   # Translation JSON files
 │   └── index.html              # Main HTML document
-├── server.py                   # Flask backend server
+├── app.py                      # Flask backend server
+├── app_webview.py              # PyWebView desktop application
 ├── kinovacalculator.py         # Core kinematics calculations
 ├── kinovacalculator_api.py     # API layer for kinematics calculations
 ├── kinovacalculator_test.py    # Test suite
@@ -82,6 +127,7 @@ An interactive web application for visualizing and calculating the forward and i
 
 *   **Backend:**
     *   Flask - Web server framework
+    *   PyWebView - Desktop application framework
     *   ikpy (3.4.2) - Inverse kinematics library
     *   numpy (1.26.4) - Numerical computation
     *   scipy (1.15.2) - Scientific computing
@@ -91,18 +137,38 @@ An interactive web application for visualizing and calculating the forward and i
 
 ## Deployment
 
-The application is configured for deployment on Vercel using the provided `vercel.json` configuration.
+The web application is configured for deployment on Vercel using the provided `vercel.json` configuration.
 
-## How it Works
+## How to Use
 
-1. The frontend interface provides inputs for joint angles (FK) or Cartesian poses (IK).
-2. When calculations are requested (manually or automatically):
-   - For Forward Kinematics: Joint angles are sent to the `/api/angular2cartesian` endpoint
-   - For Inverse Kinematics: Target poses are sent to the `/api/cartesian2angular` endpoint
-3. The backend processes the request using the kinematics engine in `kinovacalculator.py`
-4. Results, including error metrics, are returned to the frontend
-5. The 3D visualization is updated using Three.js to show the robot's current configuration
-6. Error metrics provide feedback on calculation accuracy
+1. **Forward Kinematics**:
+   - Enter the joint angles (in degrees) for the 6 joints
+   - Click "Calculate" or enable "Auto" for real-time updates
+   - View the resulting end-effector position and orientation
+
+2. **Inverse Kinematics**:
+   - Switch to the "Inverse Kinematics" tab
+   - Enter the desired end-effector position (X, Y, Z) in millimeters
+   - Enter the desired orientation (ThetaX, ThetaY, ThetaZ) in degrees
+   - Click "Calculate" or enable "Auto" for real-time updates
+   - View the resulting joint angles
+
+3. **Presets**:
+   - Use the preset buttons to load common configurations
+   - "Zero" - All joints at 0 degrees
+   - "Home" - The robot's home position
+   - "Random" - A random valid configuration
+
+4. **Visualization**:
+   - Use the mouse to interact with the 3D visualization:
+     - Left mouse button: Rotate
+     - Middle mouse button/scroll wheel: Zoom
+     - Right mouse button: Pan
+
+## Troubleshooting
+
+- If you encounter "Failed to solve inverse kinematics" errors, try adjusting your target position to be within the robot's workspace.
+- Joint angles are limited to the physical constraints of the Kinova Gen3 Lite robot.
 
 ## License
 
