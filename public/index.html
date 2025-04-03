@@ -16,8 +16,43 @@
             }
         }
     </script>
+    <style>
+        /* Loading spinner styles */
+        #loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(128, 128, 128, 0.7); /* Semi-transparent gray overlay */
+            backdrop-filter: blur(2px); /* Slight blur effect */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Spinner -->
+    <div id="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+
     <h1 data-translate-key="pageTitle"></h1>
 
     <!-- Theme Switcher -->
@@ -177,7 +212,25 @@
         
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM fully loaded. Initializing Kinova Calculator...');
-            initializeApp();
+            
+            // Initialize the app
+            initializeApp().then(() => {
+                // Hide the loading spinner when initialization is complete
+                const loader = document.getElementById('loader-overlay');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
+                }
+            }).catch(error => {
+                console.error('Error initializing app:', error);
+                // Hide loader even on error
+                const loader = document.getElementById('loader-overlay');
+                if (loader) {
+                    loader.style.display = 'none';
+                }
+            });
         });
     </script>
 
