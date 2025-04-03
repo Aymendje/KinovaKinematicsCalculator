@@ -47,6 +47,8 @@ import {
     setupAutoCalculateButtons
 } from './ui.js';
 
+import { hideLoader } from './spinner.js';
+
 // Initialize the application
 async function initializeApp() {
     console.log('Initializing application...');
@@ -226,7 +228,7 @@ async function initializeApp() {
 
     // Perform initial Forward Kinematics calculation
     console.log("Performing initial forward kinematics calculation...");
-    calculateForwardKinematics()
+    await calculateForwardKinematics()
         .then(() => {
             console.log("Initial calculation complete.");
             // Ensure translations are applied after the initial calculation
@@ -237,6 +239,9 @@ async function initializeApp() {
             // Apply translations even if there was an error
             applyTranslations();
         });
+    
+    // Hide the loader when initialization is complete
+    hideLoader();
 }
 
 // Define UI-updating wrapper for FK calculation

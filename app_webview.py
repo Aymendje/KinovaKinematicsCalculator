@@ -1,7 +1,5 @@
 import os
 import webview
-import json
-import threading
 import kinovacalculator_api
 
 class KinovaAPI:
