@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/spinner.css">
     <script type="importmap">
         {
             "imports": {
@@ -18,6 +19,11 @@
     </script>
 </head>
 <body>
+    <!-- Loading Spinner -->
+    <div id="loader-overlay">
+        <img src="https://img.icons8.com/fluency/96/robot.png" class="logo-spinner" alt="Loading...">
+    </div>
+
     <h1 data-translate-key="pageTitle"></h1>
 
     <!-- Theme Switcher -->
@@ -170,14 +176,14 @@
 
     </div><!-- End main-layout -->
 
-
     <!-- Scripts -->
+    <script type="module" src="js/spinner.js"></script>
     <script type="module">
         import { initializeApp } from './js/main.js';
         
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM fully loaded. Initializing Kinova Calculator...');
-            initializeApp();
+            initializeApp(); // The spinner is now handled inside initializeApp
         });
     </script>
 

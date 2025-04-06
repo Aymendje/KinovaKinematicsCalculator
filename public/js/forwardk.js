@@ -13,6 +13,9 @@ import {
     setErrorBasedResultBoxColor
 } from './helper.js';
 
+// Import unified API utility
+import { callBackend } from './api.js';
+
 // Constants for Presets
 export const angles_zero = [0, 0, 0, 0, 0, 0];
 export const angles_home = [0, 344.0, 75.0, 0, 300.0, 0]; // Adjusted home position from kinematics.js
@@ -39,31 +42,9 @@ export async function angular2cartesian(jointAnglesDeg) {
         // Destructure the joint angles array
         const [angle1, angle2, angle3, angle4, angle5, angle6] = jointAnglesDeg;
         
-        // Call the Python function through API endpoint
-        const endpoint = '/api/angular2cartesian';
-        
-        // Make the request but return a promise that resolves to the result
-        return new Promise((resolve, reject) => {
-            fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    angle1, angle2, angle3, angle4, angle5, angle6
-                }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                resolve(data); // Return the API response object with pose and error
-            })
-            .catch(error => {
-                console.error(`Error in angular2cartesian API call: ${error.message}`);
-                reject(error);
-            });
+        // Call the API using the unified utility
+        return await callBackend('/api/angular2cartesian', {
+            angle1, angle2, angle3, angle4, angle5, angle6
         });
     } catch (e) {
         console.error(`Error in angular2cartesian: ${e.message}`);

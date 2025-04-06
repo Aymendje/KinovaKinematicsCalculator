@@ -2,7 +2,8 @@
  * Inverse Kinematics module for calculating joint angles from cartesian poses
  */
 
-// Import necessary utilities
+// Import unified API utility
+import { callBackend } from './api.js';
 
 /**
  * Convert cartesian pose to joint angles
@@ -16,31 +17,14 @@
  */
 export async function cartesian2angular(x_mm, y_mm, z_mm, thetaX_deg, thetaY_deg, thetaZ_deg) {
     try {
-        // Call the Python function through API endpoint
-        const endpoint = '/api/cartesian2angular';
-        
-        // Make the request and return a promise
-        return fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                x: x_mm / 1000.0,  // Convert mm to m
-                y: y_mm / 1000.0,
-                z: z_mm / 1000.0,
-                thetaX: thetaX_deg,
-                thetaY: thetaY_deg,
-                thetaZ: thetaZ_deg
-            }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .catch(error => {
-            console.error(`Error in cartesian2angular API call: ${error.message}`);
-            throw error;
+        // Call the API using the unified utility
+        return await callBackend('/api/cartesian2angular', {
+            x: x_mm / 1000.0,  // Convert mm to m
+            y: y_mm / 1000.0,
+            z: z_mm / 1000.0,
+            thetaX: thetaX_deg,
+            thetaY: thetaY_deg,
+            thetaZ: thetaZ_deg
         });
     } catch (e) {
         console.error(`Error in cartesian2angular: ${e.message}`);
@@ -64,7 +48,7 @@ export async function calculateInverseKinematics() {
     const thetaZ_deg = parseFloat(document.getElementById('orient-z').value.replace(',', '.')) || 0;
 
     try {
-        // Call the Flask server with the cartesian pose
+        // Call the API with the cartesian pose
         const result = await cartesian2angular(x_mm, y_mm, z_mm, thetaX_deg, thetaY_deg, thetaZ_deg);
         return result;
     } catch (error) {

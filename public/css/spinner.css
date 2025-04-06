@@ -1,0 +1,25 @@
+/* Loading spinner styles */
+#loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.7); /* Semi-transparent gray overlay */
+    backdrop-filter: blur(2px); /* Slight blur effect */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+.logo-spinner {
+    width: 96px;
+    height: 96px;
+    animation: spin 2s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} 
